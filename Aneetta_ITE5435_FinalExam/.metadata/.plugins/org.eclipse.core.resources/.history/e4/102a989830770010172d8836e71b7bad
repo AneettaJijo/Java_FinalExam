@@ -1,0 +1,37 @@
+package com.aj.spring.finalex.controller;
+
+
+
+import com.aj.spring.finalex.entity.Reservation;
+import com.aj.spring.finalex.service.ReservationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/reservation")
+public class ReservationController {
+
+ @Autowired
+ private ReservationService reservationService;
+
+ @GetMapping("/form")
+ public String showReservationForm(Model model) {
+     model.addAttribute("reservation", new Reservation());
+     return "reservation";
+ }
+
+ @PostMapping("/submit")
+ public String submitReservation(Reservation reservation) {
+     reservationService.saveReservation(reservation);
+     return "redirect:/reservation/thankyou";
+ }
+
+ @GetMapping("/thankyou")
+ public String showThankYouPage() {
+     return "thankyou";
+ }
+}

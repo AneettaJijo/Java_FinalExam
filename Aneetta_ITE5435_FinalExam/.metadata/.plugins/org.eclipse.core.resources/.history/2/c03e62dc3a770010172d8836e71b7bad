@@ -1,0 +1,7 @@
+package com.aj.spring.finalex.repository;
+
+import com.aj.spring.finalex.entity.Reservation;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface ReservationRepository extends MongoRepository<Reservation, String> {
+}

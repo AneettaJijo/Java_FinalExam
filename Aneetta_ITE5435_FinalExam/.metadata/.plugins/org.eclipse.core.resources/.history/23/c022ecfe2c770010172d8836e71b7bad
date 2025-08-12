@@ -1,0 +1,5 @@
+package com.aj.spring.finalex.repository;
+
+public class ReservationRepository {
+
+}

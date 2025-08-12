@@ -1,0 +1,5 @@
+spring.application.name=Aneetta_ITE5435_FinalExam
+
+spring.data.mongodb.uri=mongodb+srv://Aneetta:Aneetta@ite5315-aneetta.3kqge.mongodb.net/Final_Exam?retryWrites=true&w=majority&appName=ITE5315-ANEETTA
+
+server.port=8888

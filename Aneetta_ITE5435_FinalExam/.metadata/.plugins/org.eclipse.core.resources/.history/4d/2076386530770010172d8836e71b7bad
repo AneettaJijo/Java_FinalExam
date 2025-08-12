@@ -1,0 +1,87 @@
+package com.aj.spring.finalex.entity;
+
+
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
+
+@Document(collection = "reservations")
+public class Reservation {
+
+ @Id
+ private String id;
+ private String firstName;
+ private String lastName;
+ private int numberOfPassengers;
+ private String flightClass; // Economy, Business, etc.
+ private String phoneNumber;
+ private String time;
+ private Date dateOfDeparture;
+
+ // Getters and Setters
+ public String getId() {
+     return id;
+ }
+
+ public void setId(String id) {
+     this.id = id;
+ }
+
+ public String getFirstName() {
+     return firstName;
+ }
+
+ public void setFirstName(String firstName) {
+     this.firstName = firstName;
+ }
+
+ public String getLastName() {
+     return lastName;
+ }
+
+ public void setLastName(String lastName) {
+     this.lastName = lastName;
+ }
+
+ public int getNumberOfPassengers() {
+     return numberOfPassengers;
+ }
+
+ public void setNumberOfPassengers(int numberOfPassengers) {
+     this.numberOfPassengers = numberOfPassengers;
+ }
+
+ public String getFlightClass() {
+     return flightClass;
+ }
+
+ public void setFlightClass(String flightClass) {
+     this.flightClass = flightClass;
+ }
+
+ public String getPhoneNumber() {
+     return phoneNumber;
+ }
+
+ public void setPhoneNumber(String phoneNumber) {
+     this.phoneNumber = phoneNumber;
+ }
+
+ public String getTime() {
+     return time;
+ }
+
+ public void setTime(String time) {
+     this.time = time;
+ }
+
+ public Date getDateOfDeparture() {
+     return dateOfDeparture;
+ }
+
+ public void setDateOfDeparture(Date dateOfDeparture) {
+     this.dateOfDeparture = dateOfDeparture;
+ }
+}

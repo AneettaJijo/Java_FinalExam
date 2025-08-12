@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thank You</title>
+</head>
+<body>
+    <h2>✅ Thank you! Your reservation has been saved.</h2>
+    <p>We'll send a confirmation email shortly.</p>
+    <a href="/reservation/new">Make another reservation</a>
+</body>
+</html>

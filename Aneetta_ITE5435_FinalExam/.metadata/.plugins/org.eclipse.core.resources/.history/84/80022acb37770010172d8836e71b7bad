@@ -1,0 +1,47 @@
+package com.aj.spring.finalex.controller;
+
+
+
+
+import com.aj.spring.finalex.entity.Customer;
+import com.aj.spring.finalex.entity.Payment;
+import com.aj.spring.finalex.entity.Reservation;
+import com.aj.spring.finalex.service.ReservationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class ReservationController {
+
+    @Autowired
+    private ReservationService service;
+
+    @GetMapping("/reservation/new")
+    public String showForm(Model model) {
+        Reservation reservation = new Reservation();
+        reservation.setCustomer(new Customer());
+        reservation.setPayment(new Payment());
+        model.addAttribute("reservation", reservation);
+        return "reservation";  // ← Matches reservation.html
+    }
+
+    @PostMapping("/reservation/save")
+    public String saveReservation(Reservation reservation) {
+        if (reservation.getStatus() == null) {
+            reservation.setStatus("Pending");
+        }
+        if (reservation.getReservationDate() == null) {
+            reservation.setReservationDate(new java.util.Date());
+        }
+        service.save(reservation);
+        return "redirect:/reservation/thankyou";
+    }
+
+    @GetMapping("/reservation/thankyou")
+    public String thankYou() {
+        return "thankyou";  // Matches thankYou.html
+    }
+}

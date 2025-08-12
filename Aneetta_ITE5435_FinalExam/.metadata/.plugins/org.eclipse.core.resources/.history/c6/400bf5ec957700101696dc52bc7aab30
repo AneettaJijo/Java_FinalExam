@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Husky Air - New Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            max-width: 700px;
+            background: #f8f9fa;
+        }
+        h2, h3 {
+            color: #2c3e50;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            background: white;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .global-error { 
+            background: #ffebee; 
+            color: #c62828; 
+            padding: 10px; 
+            margin-bottom: 20px; 
+            border-radius: 4px; 
+        }
+    </style>
+</head>
+<body>
+    <h2>Husky Air - Create Reservation</h2>
+    <img src="/src/main/resources/templates/image.png" alt="Husky Air Logo" width="180" />
+
+    <!-- Global Error -->
+  
+
+    <form th:action="@{/reservation/save}" th:object="${reservation}" method="post">
+    
+    <div th:if="${#fields.hasAnyErrors()}" class="global-error">
+        <strong>Please fix the following errors:</strong>
+        <ul>
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</li>
+        </ul>
+    </div>
+        
+        <!-- Customer Details -->
+        <fieldset>
+            <legend>👤 Customer Details</legend>
+            <label>First Name:
+                <input type="text" th:field="*{customer.firstName}" />
+                <span class="error" th:if="${#fields.hasErrors('customer.firstName')}" th:errors="*{customer.firstName}"></span>
+            </label>
+
+            <label>Last Name:
+                <input type="text" th:field="*{customer.lastName}" />
+                <span class="error" th:if="${#fields.hasErrors('customer.lastName')}" th:errors="*{customer.lastName}"></span>
+            </label>
+
+            <label>Email:
+                <input type="email" th:field="*{customer.email}" />
+                <span class="error" th:if="${#fields.hasErrors('customer.email')}" th:errors="*{customer.email}"></span>
+            </label>
+
+            <label>Phone:
+                <input type="text" th:field="*{customer.phone}" />
+                <span class="error" th:if="${#fields.hasErrors('customer.phone')}" th:errors="*{customer.phone}"></span>
+            </label>
+
+            <label>Address:
+                <input type="text" th:field="*{customer.address}" />
+            </label>
+        </fieldset>
+
+        <!-- Reservation Info -->
+        <fieldset>
+            <legend>✈️ Reservation Info</legend>
+            <label>Flight Number:
+                <input type="text" th:field="*{flightNumber}" />
+                <span class="error" th:if="${#fields.hasErrors('flightNumber')}" th:errors="*{flightNumber}"></span>
+            </label>
+
+            <label>Passengers:
+                <input type="number" th:field="*{numberOfPassengers}" min="1" />
+                <span class="error" th:if="${#fields.hasErrors('numberOfPassengers')}" th:errors="*{numberOfPassengers}"></span>
+            </label>
+
+            <label>Date:
+                <input type="date" th:field="*{reservationDate}" />
+                <span class="error" th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></span>
+            </label>
+
+            <label>Status:
+                <select th:field="*{status}">
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
+            </label>
+        </fieldset>
+
+        <!-- Payment Info -->
+        <fieldset>
+            <legend>💳 Payment Info</legend>
+            <label>Amount ($):
+                <input type="number" step="0.01" th:field="*{payment.amount}" />
+                <span class="error" th:if="${#fields.hasErrors('payment.amount')}" th:errors="*{payment.amount}"></span>
+            </label>
+
+            <label>Method:
+                <select th:field="*{payment.method}">
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="PayPal">PayPal</option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('payment.method')}" th:errors="*{payment.method}"></span>
+            </label>
+
+            <label>Payment Status:
+                <select th:field="*{payment.status}">
+                    <option value="Pending">Pending</option>
+                    <option value="Paid">Paid</option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('payment.status')}" th:errors="*{payment.status}"></span>
+            </label>
+        </fieldset>
+
+        <button type="submit">Submit Reservation</button>
+    </form>
+</body>
+</html>

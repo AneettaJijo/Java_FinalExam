@@ -1,0 +1,11 @@
+<!-- src/main/resources/templates/thankYou.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thank You</title>
+</head>
+<body>
+    <h2>Thank You for Your Reservation!</h2>
+    <p>Your reservation has been successfully submitted.</p>
+</body>
+</html>

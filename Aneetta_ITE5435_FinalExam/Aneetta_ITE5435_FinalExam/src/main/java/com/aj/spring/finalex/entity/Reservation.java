@@ -1,0 +1,64 @@
+package com.aj.spring.finalex.entity;
+
+
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+@Document("reservations")
+public class Reservation {
+
+    @Id
+    private String id;
+
+    @NotNull(message = "Flight number is required")
+    @Size(min = 3, max = 10, message = "Flight number must be 3-10 chars")
+    private String flightNumber;
+
+    @NotNull(message = "Passenger count is required")
+    private Integer numberOfPassengers;
+
+    @NotNull(message = "Reservation date is required")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // This is the key
+    private Date reservationDate;
+
+    @NotNull(message = "Status is required")
+    private String status;
+
+    // Nested objects — these should be @Valid
+    @Valid
+    @NotNull(message = "Customer info is required")
+    private Customer customer;
+
+    @Valid
+    @NotNull(message = "Payment info is required")
+    private Payment payment;
+
+    // Getters and Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public String getFlightNumber() { return flightNumber; }
+    public void setFlightNumber(String flightNumber) { this.flightNumber = flightNumber; }
+
+    public Integer getNumberOfPassengers() { return numberOfPassengers; }
+    public void setNumberOfPassengers(Integer numberOfPassengers) { this.numberOfPassengers = numberOfPassengers; }
+
+    public Date getReservationDate() { return reservationDate; }
+    public void setReservationDate(Date reservationDate) { this.reservationDate = reservationDate; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public Customer getCustomer() { return customer; }
+    public void setCustomer(Customer customer) { this.customer = customer; }
+
+    public Payment getPayment() { return payment; }
+    public void setPayment(Payment payment) { this.payment = payment; }
+}

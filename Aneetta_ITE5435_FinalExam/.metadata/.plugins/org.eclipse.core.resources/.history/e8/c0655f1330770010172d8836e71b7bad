@@ -1,0 +1,5 @@
+package com.aj.spring.finalex.entity;
+
+public class Customer {
+
+}

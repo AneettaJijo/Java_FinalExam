@@ -1,0 +1,11 @@
+spring.application.name=Aneetta_ITE5435_FinalExam
+
+spring.data.mongodb.uri=mongodb+srv://Aneetta:Aneetta@ite5315-aneetta.3kqge.mongodb.net/Husky_Air?retryWrites=true&w=majority&appName=ITE5315-ANEETTA
+
+server.port=8080
+
+spring.thymeleaf.cache=false
+spring.thymeleaf.enabled=true
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.servlet.content-type=text/html

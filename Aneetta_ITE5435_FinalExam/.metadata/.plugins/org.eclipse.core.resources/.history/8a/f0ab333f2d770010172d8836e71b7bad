@@ -1,0 +1,5 @@
+package com.aj.spring.finalex.service;
+
+public class ReservationService {
+
+}
